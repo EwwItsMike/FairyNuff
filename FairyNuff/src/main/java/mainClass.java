@@ -1,4 +1,5 @@
 import commands.*;
+import commands.embedCommands.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
@@ -115,6 +116,7 @@ public class mainClass extends ListenerAdapter {
                 break;
             case "record":
                 c = new RecordsCommand();
+                break;
             default:
                 break;
         }

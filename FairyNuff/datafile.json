@@ -1,34 +1,6 @@
 {
   "serverID": 332595657363685377,
   "users": {
-    "393405958518341634": {
-      "discordID": 393405958518341634,
-      "rsn": "rabd",
-      "masterRank": 2228,
-      "masterCount": 570,
-      "eliteRank": 58621,
-      "eliteCount": 65,
-      "hardRank": 650,
-      "hardCount": 7000,
-      "medRank": 568,
-      "medCount": 1200,
-      "easyRank": 161,
-      "easyCount": 3483
-    },
-    "188718342331301889": {
-      "discordID": 188718342331301889,
-      "rsn": "Chris D",
-      "masterRank": 0,
-      "masterCount": 0,
-      "eliteRank": 0,
-      "eliteCount": 0,
-      "hardRank": 0,
-      "hardCount": 0,
-      "medRank": 0,
-      "medCount": 0,
-      "easyRank": 0,
-      "easyCount": 0
-    },
     "201330385013964809": {
       "discordID": 201330385013964809,
       "rsn": "2nd age",
@@ -42,20 +14,6 @@
       "medCount": 75,
       "easyRank": 6430,
       "easyCount": 320
-    },
-    "195276355779166208": {
-      "discordID": 195276355779166208,
-      "rsn": "GanB",
-      "masterRank": 27,
-      "masterCount": 6727,
-      "eliteRank": 13,
-      "eliteCount": 26102,
-      "hardRank": 375,
-      "hardCount": 10000,
-      "medRank": 406,
-      "medCount": 1500,
-      "easyRank": 1911,
-      "easyCount": 1100
     }
   }
 }

@@ -12,12 +12,26 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Objects;
 
 public class mainClass extends ListenerAdapter {
 
     public static void main(String[] args) {
-        String token = args[0];
+        String token = "";
+
+        try (FileReader read = new FileReader("token.txt")){
+            int i;
+            while ((i = read.read())!= -1){
+                token += (char)i;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("token.txt was not found.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)

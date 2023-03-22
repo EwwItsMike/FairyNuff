@@ -13,7 +13,7 @@ Repository for the Fairy Nuff Discord bot, for Clue Chasers FC Discord server
     - description (String)
     - footer (String)
     - color (integer)
-  You may also call the addField() method. This method takes 2 Strings as arguments: the title of the field, and the description of the field.
+  You may also call the addField() method. This method takes 2 Strings as arguments: the title of the field, and the description of the field. If you wish the fields to be inline (next to eachother if it fits), pass "true" as a third parameter in this method.
 - Once you have set all the parameters as you want them, MAKE SURE the last line of code in the method is super.execute(event);
 # Picture 1:
 ![picture](https://cdn.discordapp.com/attachments/585386371968139276/1087862603541397585/image.png)

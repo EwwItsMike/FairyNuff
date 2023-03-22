@@ -81,7 +81,8 @@ public class mainClass extends ListenerAdapter {
                         .addOption(OptionType.INTEGER, "place", "Placement on the leaderboard of the new record. Must be a number.", true)
                         .addOption(OptionType.STRING, "time", "The time in which the stack was solved. Fill in number of clues for Hourly category.", true)
                         .addOptions(yesno),
-                Commands.slash("gathering", "Returns an embed detailing the best ways to gather clue scrolls.")
+                Commands.slash("gathering", "Returns an embed detailing the best ways to gather clue scrolls."),
+                Commands.slash("lumber", "Returns an embed detailing the new lumberyard steps.")
 
         ).queue();
     }

@@ -2,7 +2,7 @@ package commands.embedCommands;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 
-public class EmbedCommandGathering extends EmbedCommandTemplate {
+public class GatheringEmbedCommand extends EmbedCommandTemplate {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {

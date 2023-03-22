@@ -82,7 +82,9 @@ public class mainClass extends ListenerAdapter {
                         .addOption(OptionType.STRING, "time", "The time in which the stack was solved. Fill in number of clues for Hourly category.", true)
                         .addOptions(yesno),
                 Commands.slash("gathering", "Returns an embed detailing the best ways to gather clue scrolls."),
-                Commands.slash("lumber", "Returns an embed detailing the new lumberyard steps.")
+                Commands.slash("lumber", "Returns an embed detailing the new lumberyard steps."),
+                Commands.slash("solving", "Returns an embed detailing the best presets and ways to do clue scrolls."),
+                Commands.slash("faq", "Returns an embed detailing all the faq about clue scrolls.")
 
         ).queue();
     }
@@ -124,6 +126,12 @@ public class mainClass extends ListenerAdapter {
                 break;
             case "lumber":
                 c = new LumberEmbedCommand();
+                break;
+            case "solving":
+                c = new SolvingEmbedCommand();
+                break;
+            case "faq":
+                c = new FaqEmbedCommand();
                 break;
             default:
                 break;

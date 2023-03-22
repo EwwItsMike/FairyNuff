@@ -121,6 +121,9 @@ public class mainClass extends ListenerAdapter {
             case "gathering":
                 c = new GatheringEmbedCommand();
                 break;
+            case "lumber":
+                c = new LumberEmbedCommand();
+                break;
             default:
                 break;
         }

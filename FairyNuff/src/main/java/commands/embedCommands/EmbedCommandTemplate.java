@@ -27,7 +27,7 @@ public class EmbedCommandTemplate extends Command {
         builder.setColor(color);
 
         for (EmbedField field : embedFields){
-            builder.addField(field.title, field.description, false);
+            builder.addField(field.title, field.description, field.inline);
         }
 
         event.getHook().sendMessageEmbeds(builder.build()).queue();
@@ -36,4 +36,6 @@ public class EmbedCommandTemplate extends Command {
     protected void addField(String title, String description) {
         embedFields.add(new EmbedField(title, description));
     }
+
+    protected void addField(String title, String description, boolean inline) { embedFields.add(new EmbedField(title, description, inline)); }
 }

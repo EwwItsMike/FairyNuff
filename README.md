@@ -18,7 +18,7 @@ Repository for the Fairy Nuff Discord bot, for Clue Chasers FC Discord server
 # Picture 1:
 ![picture](https://cdn.discordapp.com/attachments/585386371968139276/1087862603541397585/image.png)
 
-- After the command code is created, navigate to the mainClass.java file.
+- After the command code is created, navigate to the [mainClass.java](https://github.com/EwwItsMike/FairyNuff/blob/main/FairyNuff/src/main/java/mainClass.java) file.
 - In the main() method there is a long list of commands getting added to the bot, starting at line 54 with "jda.updateCommands().addCommands("
 - Scroll down to where the last command gets added, and add a comma after the closing parantheses, as shown on line 83 in picture 2
 - Add your new command to the list as shown on line 84 in picture 2. The name of the command can only contain lowercase letters.

@@ -34,3 +34,7 @@ Repository for the Fairy Nuff Discord bot, for Clue Chasers FC Discord server
 
 # Picture 3:
 ![picture](https://cdn.discordapp.com/attachments/585386371968139276/1087863757738365028/image.png)
+
+# Example usage of the Embed Command Template:
+![picture](https://cdn.discordapp.com/attachments/1022566186602467348/1088052887420153986/image.png)
+![picture](https://cdn.discordapp.com/attachments/1022566186602467348/1088053328065335326/image.png)

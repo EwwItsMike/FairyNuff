@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -84,7 +85,9 @@ public class mainClass extends ListenerAdapter {
                 Commands.slash("gathering", "Returns an embed detailing the best ways to gather clue scrolls."),
                 Commands.slash("lumber", "Returns an embed detailing the new lumberyard steps."),
                 Commands.slash("solving", "Returns an embed detailing the best presets and ways to do clue scrolls."),
-                Commands.slash("faq", "Returns an embed detailing all the faq about clue scrolls.")
+                Commands.slash("faq", "Returns an embed detailing all the faq about clue scrolls."),
+                Commands.slash("usefullinks", "Returns an embed with useful links."),
+                Commands.slash("alt1", "Returns an embed with useful information about Alt1 Toolkit.")
 
         ).queue();
     }
@@ -132,6 +135,12 @@ public class mainClass extends ListenerAdapter {
                 break;
             case "faq":
                 c = new FaqEmbedCommand();
+                break;
+            case "usefullinks":
+                c = new UsefulLinksEmbedCommand();
+                break;
+            case "alt1":
+                c = new Alt1EmbedCommand();
                 break;
             default:
                 break;

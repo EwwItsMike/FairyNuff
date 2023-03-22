@@ -80,7 +80,8 @@ public class mainClass extends ListenerAdapter {
                         .addOption(OptionType.STRING, "link", "Link to the new record.", true)
                         .addOption(OptionType.INTEGER, "place", "Placement on the leaderboard of the new record. Must be a number.", true)
                         .addOption(OptionType.STRING, "time", "The time in which the stack was solved. Fill in number of clues for Hourly category.", true)
-                        .addOptions(yesno)
+                        .addOptions(yesno),
+                Commands.slash("gathering", "Returns an embed detailing the best ways to gather clue scrolls.")
 
         ).queue();
     }
@@ -116,6 +117,9 @@ public class mainClass extends ListenerAdapter {
                 break;
             case "record":
                 c = new RecordsCommand();
+                break;
+            case "gathering":
+                c = new GatheringEmbedCommand();
                 break;
             default:
                 break;

@@ -1,0 +1,18 @@
+package commands.embedCommands;
+
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+
+public class HelpEmbedCommand extends EmbedCommandTemplate{
+
+    @Override
+    public void execute(SlashCommandInteractionEvent event) {
+        title = "__Help__";
+        color = 0x04336b;
+
+        description = "";
+
+        addField("Reminder that it really helps to gauge someone's skill level and try to tailor your advice to it so they don't get confused/overwhelmed with things they're not really ready for. Saying 'just do this or that' isn't helpful advice to people that are still trying to get comfortable with basics that seem logical to us.");
+
+        super.execute(event);
+    }
+}

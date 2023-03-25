@@ -88,6 +88,7 @@ public class mainClass extends ListenerAdapter {
                 Commands.slash("faq", "Returns an embed detailing all the faq about clue scrolls."),
                 Commands.slash("usefullinks", "Returns an embed with useful links."),
                 Commands.slash("alt1", "Returns an embed with useful information about Alt1 Toolkit.")
+                Commands.slash("help", "Returns an embed with help information.")
 
         ).queue();
     }
@@ -141,6 +142,9 @@ public class mainClass extends ListenerAdapter {
                 break;
             case "alt1":
                 c = new Alt1EmbedCommand();
+                break;
+            case "help":
+                c = new HelpEmbedCommand();
                 break;
             default:
                 break;

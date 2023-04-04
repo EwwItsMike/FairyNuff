@@ -8,7 +8,7 @@ public class FairEnoughListener extends ListenerAdapter {
         if (event.getAuthor().isBot()){
             return;
         }
-        if (event.getMessage().getContentStripped().contains("fair enough")){
+        if (event.getMessage().getContentStripped().toLowerCase().contains("fair enough")){
             event.getChannel().sendMessage("%s Fairy Nuff*".formatted(event.getAuthor().getAsMention())).queue();
         }
     }

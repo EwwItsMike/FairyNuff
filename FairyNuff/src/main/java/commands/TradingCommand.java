@@ -20,7 +20,7 @@ public class TradingCommand extends Command {
         builder.addField("For all your trading needs:",
                 "Please refer to the official RuneScape Discord server. You can find their marketplace here:\n" +
                         "https://discord.com/channels/303835144073248770/1093229806059012137" +
-                        "\n\n*You will need the Iron activity rank to access the section.*", false);
+                        "\n\n*You will need the Bronze activity rank to access the section.*", false);
 
         event.getHook().sendMessageEmbeds(builder.build()).queue();
     }

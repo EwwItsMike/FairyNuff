@@ -8,7 +8,6 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
-import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -38,58 +37,32 @@ public class mainClass extends ListenerAdapter {
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
-                .addEventListeners(new mainClass(), new FairEnoughListener())
+                .addEventListeners(new mainClass(), new FairEnoughListener(), new MingoListener(), new DsfMerchListener())
                 .setActivity(Activity.listening("/commands"))
                 .build();
 
-        OptionData tagOptions = new OptionData(OptionType.STRING, "role", "The role to tag", true)
-                .addChoice("Unstable air rune", "air rune").addChoice("Wicked hood token", "wicked hood");
-        OptionData tiers = new OptionData(OptionType.STRING, "tier", "The tier of clue", true)
-                .addChoice("Easy", "Easy").addChoice("Medium", "Medium").addChoice("Hard", "Hard")
-                .addChoice("Elite", "Elite").addChoice("Master", "Master");
-        OptionData category = new OptionData(OptionType.STRING, "category", "The category of the new record", true)
-                .addChoice("Single", "1").addChoice("25", "25").addChoice("50", "50").addChoice("Hourly", "Hourly");
-        OptionData yesno = new OptionData(OptionType.STRING, "skips", "Used skips?", true).addChoice("Yes", "yes").addChoice("No", "no");
-        OptionData ping = new OptionData(OptionType.STRING, "ping", "Ping the Clue Records role?", true).addChoice("Yes", "y").addChoice("No", "n");
+        OptionData tagRoles = new OptionData(OptionType.STRING, "role", "The role to tag", true)
+                .addChoice("Clue News", "<@&1064540154125111386>").addChoice("Clue Records", "<@&1071487069232308224>")
+                .addChoice("Wicked hood promo", "<@&1064548406548242442>").addChoice("Scan Trainer", "<@&1104143964438810724>")
+                .addChoice("Infohub Changes", "<@&1064542461776637992>");
 
         jda.updateCommands().addCommands(
-                Commands.slash("test", "Replies with a test reply."),
+                Commands.slash("test", "Replies with a test reply.").addOption(OptionType.STRING, "test", "test", false),
                 Commands.slash("setrsn", "Set your in-game username.").addOption(OptionType.STRING, "rsn" ,  "Your RSN", true),
                 Commands.slash("removeuserbyrsn", "Remove a user from the datafile")
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
                         .addOption(OptionType.STRING, "rsn", "RSN of the person to be removed", true),
                 Commands.slash("removeuserbyid", "Remove a user from the datafile")
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
-                        .addOption(OptionType.INTEGER, "id", "Discord ID of the person to be removed", true),
+                        .addOption(OptionType.NUMBER, "id", "Discord ID of the person to be removed", true),
                 Commands.slash("clues", "Updates your clue counts in the bot and gives you the stats."),
                 Commands.slash("lookup", "Looks up a player's clue stats")
                         .addOption(OptionType.STRING, "rsn", "RSN of the person you're trying to look up.", true),
-                Commands.slash("news", "Announces a post in #clue-news with tag.")
-                        .setDefaultPermissions(DefaultMemberPermissions.DISABLED)
-                        .addOption(OptionType.STRING, "message", "The message to send in #clue-news", true)
-                        .addOption(OptionType.STRING, "link", "Link of a screenshot", false),
-                Commands.slash("tag", "Tag a role to notify people about certain promotions.")
-                        .setDefaultPermissions(DefaultMemberPermissions.DISABLED)
-                        .addOptions(tagOptions)
-                        .addOption(OptionType.STRING, "until", "Date until Wicked Hood promo lasts.", false),
-                Commands.slash("record", "Tags the @Clue Records role and sends a message in #clue-records.")
-                        .setDefaultPermissions(DefaultMemberPermissions.DISABLED)
-                        .addOptions(ping)
-                        .addOption(OptionType.STRING, "name", "Name of the new recordholder.", true)
-                        .addOptions(tiers)
-                        .addOptions(category)
-                        .addOption(OptionType.STRING, "link", "Link to the new record.", true)
-                        .addOption(OptionType.INTEGER, "place", "Placement on the leaderboard of the new record. Must be a number.", true)
-                        .addOption(OptionType.STRING, "time", "The time in which the stack was solved. Fill in number of clues for Hourly category.", true)
-                        .addOptions(yesno),
+                Commands.slash("tag", "Tags the selected role in a message. Use \\ character to indicate new line.")
+                    .addOptions(tagRoles)
+                    .addOption(OptionType.STRING, "message", "The message to send with the tag. Use \\ character to indicate new line.", false),
                 Commands.slash("trading", "Returns information about trading within Clue Chasers."),
-                Commands.slash("gathering", "Returns an embed detailing the best ways to gather clue scrolls."),
-                Commands.slash("lumber", "Returns an embed detailing the new lumberyard steps."),
-                Commands.slash("solving", "Returns an embed detailing the best presets and ways to do clue scrolls."),
-                Commands.slash("faq", "Returns an embed detailing all the faq about clue scrolls."),
-                Commands.slash("usefullinks", "Returns an embed with useful links."),
-                Commands.slash("alt1", "Returns an embed with useful information about Alt1 Toolkit.")
-
+                Commands.slash("updatefrontpage", "Removes frontpage role from people that should no longer have it")
         ).queue();
     }
 
@@ -116,35 +89,14 @@ public class mainClass extends ListenerAdapter {
             case "lookup":
                 c = new LookupCommand();
                 break;
-            case "news":
-                c = new NewsCommand();
-                break;
             case "tag":
                 c = new TagCommand();
-                break;
-            case "record":
-                c = new RecordsCommand();
                 break;
             case "trading":
                 c = new TradingCommand();
                 break;
-            case "gathering":
-                c = new GatheringEmbedCommand();
-                break;
-            case "lumber":
-                c = new LumberEmbedCommand();
-                break;
-            case "solving":
-                c = new SolvingEmbedCommand();
-                break;
-            case "faq":
-                c = new FaqEmbedCommand();
-                break;
-            case "usefullinks":
-                c = new UsefulLinksEmbedCommand();
-                break;
-            case "alt1":
-                c = new Alt1EmbedCommand();
+            case "updatefrontpage":
+                c = new UpdateFrontpageCommand();
                 break;
             default:
                 break;

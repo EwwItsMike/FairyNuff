@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FairyNuff" />
+        <module name="JdaTest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="JdaTest" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>

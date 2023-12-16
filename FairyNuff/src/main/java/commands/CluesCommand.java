@@ -100,7 +100,7 @@ public class CluesCommand extends Command {
         else if (totalPoints < 128000)
             reply += "%s points away from the Legendary Clue Chaser role!".formatted(128000 - totalPoints);
         else if (totalPoints < 256000)
-            reply += "%s points away from the Clue God of Clues role!".formatted(256000 - totalPoints);
+            reply += "%s points away from the God of Clues role!".formatted(256000 - totalPoints);
         else if (totalPoints < 512000)
             reply += "%s points away from the Elder Clue God role!".formatted(512000 - totalPoints);
         else if (totalPoints < 1024000)

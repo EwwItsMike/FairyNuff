@@ -22,6 +22,11 @@ public class SetRsnCommand extends Command {
         User user = event.getUser();
         String rsn = Objects.requireNonNull(event.getOption("rsn")).getAsString();
 
+        if (rsn.length() > 12){
+            event.reply("The name you entered is too long. Please try again.").queue();
+            return;
+        }
+
         try {
             dataManager.addNewUser(user.getIdLong(), rsn);
             event.reply("I've added you to the datafile! Use /clues to update your roles.").queue();

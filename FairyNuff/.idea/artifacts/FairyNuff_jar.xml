@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="JdaTest:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/JdaTest_jar</output-path>
-    <root id="archive" name="JdaTest.jar">
+  <artifact type="jar" name="FairyNuff:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FairyNuff_jar</output-path>
+    <root id="archive" name="FairyNuff.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
       </element>

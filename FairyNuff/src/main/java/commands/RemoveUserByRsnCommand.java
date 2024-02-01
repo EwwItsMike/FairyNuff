@@ -12,7 +12,7 @@ public class RemoveUserByRsnCommand extends Command {
     DataManager dataManager;
 
     public RemoveUserByRsnCommand(long serverId) {
-        dataManager = DbConnection.getInstance().getDataManager(serverId);
+        dataManager = DbConnection.getInstance().getDataManager();
     }
 
     @Override

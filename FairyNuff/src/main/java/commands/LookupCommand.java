@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
@@ -21,31 +22,35 @@ public class LookupCommand extends Command {
             String rsn = Objects.requireNonNull(event.getOption("rsn")).getAsString();
             HashMap<String, int[]> ranks = extractHiscores(getHiscoresHTML(rsn));
 
+            NumberFormat format = NumberFormat.getInstance(Locale.ENGLISH);
+
             EmbedBuilder eb = new EmbedBuilder();
             eb.setColor(0xFD9D06);
             eb.setAuthor(event.getUser().getName(), null, event.getUser().getAvatarUrl());
             eb.setTitle("Clue stats for %s".formatted(rsn));
-            eb.setFooter("Join the Clue Chasers discord server: discord.gg/cluechasers");
+//            eb.setFooter("Join the Clue Chasers discord server: discord.gg/cluechasers");
             eb.addField("Tier", "<:Easy:633728862039179294> Easy\n<:Medium:633728704438075435> Medium\n<:Hard:633728361918758930> Hard\n<:Elite:633732493228638209> Elite\n<:Master:1019920500807450666> Master", true);
             eb.addField("Count", "\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>".formatted(
-                    ranks.get("easy")[1],
-                    ranks.get("medium")[1],
-                    ranks.get("hard")[1],
-                    ranks.get("elite")[1],
-                    ranks.get("master")[1]
+                    format.format(ranks.get("easy")[1]),
+                    format.format(ranks.get("medium")[1]),
+                    format.format(ranks.get("hard")[1]),
+                    format.format(ranks.get("elite")[1]),
+                    format.format(ranks.get("master")[1])
             ), true);
             eb.addField("Rank", "%s <:transparent:1047157438526271488> \n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n<:transparent:1047157438526271488>".formatted(
-                    ranks.get("easy")[0],
-                    ranks.get("medium")[0],
-                    ranks.get("hard")[0],
-                    ranks.get("elite")[0],
-                    ranks.get("master")[0]
+                    format.format(ranks.get("easy")[0]),
+                    format.format(ranks.get("medium")[0]),
+                    format.format(ranks.get("hard")[0]),
+                    format.format(ranks.get("elite")[0]),
+                    format.format(ranks.get("master")[0])
             ), true);
 
             int totalPoints = getTotalCluePoints(ranks.get("easy")[1], ranks.get("medium")[1], ranks.get("hard")[1], ranks.get("elite")[1], ranks.get("master")[1]);
-            eb.addField("Total clue points: %s".formatted(totalPoints), "%s %s \n<:transparent:1047157438526271488>".formatted(
+            eb.addField("Total clue points: %s".formatted(format.format(totalPoints)), "%s %s \n<:transparent:1047157438526271488>".formatted(
                             rsn, getNextRankAndPointsUntil(totalPoints)
             ), false);
+
+            eb.addField("", "[Join the Clue Summer Spectacle on June 29!](<https://discordapp.com/channels/332595657363685377/333656528777379840/1195842848885583902>)", false);
 
             event.getHook().sendMessageEmbeds(eb.build()).queue();
 
@@ -131,26 +136,28 @@ public class LookupCommand extends Command {
     private String getNextRankAndPointsUntil(int totalPoints) {
         String reply = "is ";
 
+        NumberFormat format = NumberFormat.getInstance(Locale.ENGLISH);
+
         if (totalPoints < 2000)
-            reply += "%s points away from the Clue Beginner role!".formatted(2000 - totalPoints);
+            reply += "%s points away from the Clue Beginner role!".formatted(format.format(2000 - totalPoints));
         else if (totalPoints < 4000)
-            reply += "%s points away from the Clue Noob role!".formatted(4000 - totalPoints);
+            reply += "%s points away from the Clue Noob role!".formatted(format.format(4000 - totalPoints));
         else if (totalPoints < 8000)
-            reply += "%s points away from the Clue Disciple role!".formatted(8000 - totalPoints);
+            reply += "%s points away from the Clue Disciple role!".formatted(format.format(8000 - totalPoints));
         else if (totalPoints < 16000)
-            reply += "%s points away from the Clue Pro role!".formatted(16000 - totalPoints);
+            reply += "%s points away from the Clue Pro role!".formatted(format.format(16000 - totalPoints));
         else if (totalPoints < 32000)
-            reply += "%s points away from the Clue Master role!".formatted(32000 - totalPoints);
+            reply += "%s points away from the Clue Master role!".formatted(format.format(32000 - totalPoints));
         else if (totalPoints < 64000)
-            reply += "%s points away from the Clue Grandmaster role!".formatted(64000 - totalPoints);
+            reply += "%s points away from the Clue Grandmaster role!".formatted(format.format(64000 - totalPoints));
         else if (totalPoints < 128000)
-            reply += "%s points away from the Legendary Clue Chaser role!".formatted(128000 - totalPoints);
+            reply += "%s points away from the Legendary Clue Chaser role!".formatted(format.format(128000 - totalPoints));
         else if (totalPoints < 256000)
-            reply += "%s points away from the God of Clues role!".formatted(256000 - totalPoints);
+            reply += "%s points away from the God of Clues role!".formatted(format.format(256000 - totalPoints));
         else if (totalPoints < 512000)
-            reply += "%s points away from the Elder Clue God role!".formatted(512000 - totalPoints);
+            reply += "%s points away from the Elder Clue God role!".formatted(format.format(512000 - totalPoints));
         else if (totalPoints < 1024000)
-            reply += "%s points away from the Apotheosis of Charos role!".formatted(1024000 - totalPoints);
+            reply += "%s points away from the Apotheosis of Charos role!".formatted(format.format(1024000 - totalPoints));
         else
             reply = "has not touched grass in years. Please tell them to go outside.";
 

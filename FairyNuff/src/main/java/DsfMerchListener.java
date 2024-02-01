@@ -35,10 +35,6 @@ public class DsfMerchListener extends ListenerAdapter {
             event.getJDA().getGuildById(clueChasersID).getChannelById(MessageChannel.class, clueChasersRemindersChannelID)
                     .sendMessage(toSend).queue();
         }
-        else {
-            event.getJDA().getGuildById(privateServerID).getChannelById(MessageChannel.class, testChannelID)
-                    .sendMessage("DSF hook procced correctly, but stock did not include unstable air rune.").queue();
-        }
     }
 
     private boolean isUnstableAirRuneInStock(String message) {

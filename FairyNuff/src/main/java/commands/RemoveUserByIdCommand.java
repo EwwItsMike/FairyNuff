@@ -12,7 +12,7 @@ public class RemoveUserByIdCommand extends Command {
     DataManager dataManager;
 
     public RemoveUserByIdCommand(long id) {
-        dataManager = DbConnection.getInstance().getDataManager(id);
+        dataManager = DbConnection.getInstance().getDataManager();
     }
 
     @Override

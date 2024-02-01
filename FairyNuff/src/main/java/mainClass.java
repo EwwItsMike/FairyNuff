@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -37,33 +38,12 @@ public class mainClass extends ListenerAdapter {
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
-                .addEventListeners(new mainClass(), new FairEnoughListener(), new MingoListener(), new DsfMerchListener())
+                .addEventListeners(new mainClass(), new FairEnoughListener(), new DsfMerchListener())
                 .setActivity(Activity.listening("/commands"))
                 .build();
 
-        OptionData tagRoles = new OptionData(OptionType.STRING, "role", "The role to tag", true)
-                .addChoice("Clue News", "<@&1064540154125111386>").addChoice("Clue Records", "<@&1071487069232308224>")
-                .addChoice("Wicked hood promo", "<@&1064548406548242442>").addChoice("Scan Trainer", "<@&1104143964438810724>")
-                .addChoice("Infohub Changes", "<@&1064542461776637992>");
 
-        jda.updateCommands().addCommands(
-                Commands.slash("test", "Replies with a test reply.").addOption(OptionType.STRING, "test", "test", false),
-                Commands.slash("setrsn", "Set your in-game username.").addOption(OptionType.STRING, "rsn" ,  "Your RSN", true),
-                Commands.slash("removeuserbyrsn", "Remove a user from the datafile")
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
-                        .addOption(OptionType.STRING, "rsn", "RSN of the person to be removed", true),
-                Commands.slash("removeuserbyid", "Remove a user from the datafile")
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
-                        .addOption(OptionType.NUMBER, "id", "Discord ID of the person to be removed", true),
-                Commands.slash("clues", "Updates your clue counts in the bot and gives you the stats."),
-                Commands.slash("lookup", "Looks up a player's clue stats")
-                        .addOption(OptionType.STRING, "rsn", "RSN of the person you're trying to look up.", true),
-                Commands.slash("tag", "Tags the selected role in a message. Use \\ character to indicate new line.")
-                    .addOptions(tagRoles)
-                    .addOption(OptionType.STRING, "message", "The message to send with the tag. Use \\ character to indicate new line.", false),
-                Commands.slash("trading", "Returns information about trading within Clue Chasers."),
-                Commands.slash("updatefrontpage", "Removes frontpage role from people that should no longer have it")
-        ).queue();
+        jda.addEventListener(new CommandsManager());
     }
 
     @Override
@@ -97,6 +77,15 @@ public class mainClass extends ListenerAdapter {
                 break;
             case "updatefrontpage":
                 c = new UpdateFrontpageCommand();
+                break;
+            case "invite":
+                c = new InviteCommand();
+                break;
+            case "oystervalue":
+                c = new RollOysterValueCommand();
+                break;
+            case "randomparticipant":
+                c = new RollRandomOysterParticipantCommand();
                 break;
             default:
                 break;

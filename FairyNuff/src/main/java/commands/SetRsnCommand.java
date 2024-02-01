@@ -14,7 +14,7 @@ public class SetRsnCommand extends Command {
     DataManager dataManager;
 
     public SetRsnCommand(long serverId) {
-       dataManager = DbConnection.getInstance().getDataManager(serverId);
+       dataManager = DbConnection.getInstance().getDataManager();
     }
 
     @Override

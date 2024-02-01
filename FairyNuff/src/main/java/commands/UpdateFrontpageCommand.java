@@ -23,7 +23,7 @@ public class UpdateFrontpageCommand extends Command {
     public void execute(SlashCommandInteractionEvent event) {
         event.deferReply().queue();
 
-        dataManager = DbConnection.getInstance().getDataManager(event.getGuild().getIdLong());
+        dataManager = DbConnection.getInstance().getDataManager();
 
         //Grab all members with frontpage role
         Guild server = event.getGuild();

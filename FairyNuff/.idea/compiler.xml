@@ -9,8 +9,5 @@
         <module name="JdaTest" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="JdaTest" target="16" />
-    </bytecodeTargetLevel>
   </component>
 </project>

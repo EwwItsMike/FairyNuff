@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -40,7 +41,7 @@ public class CluesCommand extends Command {
 
 
     public CluesCommand(long serverID) {
-        dataManager = DbConnection.getInstance().getDataManager(serverID);
+        dataManager = DbConnection.getInstance().getDataManager();
     }
 
     @Override
@@ -51,27 +52,30 @@ public class CluesCommand extends Command {
             updateUserStats(event.getUser().getIdLong(), event);
             User user = dataManager.getUserByID(event.getUser().getIdLong());
 
+            NumberFormat format = NumberFormat.getInstance(Locale.ENGLISH);
+
             EmbedBuilder eb = new EmbedBuilder();
             eb.setTitle("Clue stats for %s".formatted(dataManager.getUserByID(event.getUser().getIdLong()).getRsn()));
             eb.setColor(0xFD9D06);
-            eb.setFooter("Join the Clue Chasers discord server: discord.gg/cluechasers");
             eb.setAuthor(event.getUser().getName(), null, event.getUser().getAvatarUrl());
             eb.addField("Tier", "<:Easy:633728862039179294> Easy\n<:Medium:633728704438075435> Medium\n<:Hard:633728361918758930> Hard\n<:Elite:633732493228638209> Elite\n<:Master:1019920500807450666> Master", true);
             eb.addField("Count", "\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>".formatted(
-                    user.getEasyCount(),
-                    user.getMedCount(),
-                    user.getHardCount(),
-                    user.getEliteCount(),
-                    user.getMasterCount()
+                    format.format(user.getEasyCount()),
+                    format.format(user.getMedCount()),
+                    format.format(user.getHardCount()),
+                    format.format(user.getEliteCount()),
+                    format.format(user.getMasterCount())
             ), true);
             eb.addField("Rank", "%s <:transparent:1047157438526271488> \n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n%s <:transparent:1047157438526271488>\n<:transparent:1047157438526271488>".formatted(
-                    user.getEasyRank(),
-                    user.getMedRank(),
-                    user.getHardRank(),
-                    user.getEliteRank(),
-                    user.getMasterRank()
+                    format.format(user.getEasyRank()),
+                    format.format(user.getMedRank()),
+                    format.format(user.getHardRank()),
+                    format.format(user.getEliteRank()),
+                    format.format(user.getMasterRank())
             ), true);
-            eb.addField("Total clue points: %s".formatted(getTotalCluePoints(user)), "%s\n<:transparent:1047157438526271488>".formatted(getNextRankAndPointsUntil(user)), false);
+            eb.addField("Total clue points: %s".formatted(format.format(getTotalCluePoints(user))), "%s\n<:transparent:1047157438526271488>".formatted(getNextRankAndPointsUntil(user)), false);
+
+            eb.addField("", "[Join the Clue Summer Spectacle on June 29!](<https://discordapp.com/channels/332595657363685377/333656528777379840/1195842848885583902>)", false);
 
             event.getHook().sendMessageEmbeds(eb.build()).queue();
         } catch (UserNotFoundException e) {
@@ -85,26 +89,28 @@ public class CluesCommand extends Command {
         String reply = "You are ";
         int totalPoints = getTotalCluePoints(user);
 
+        NumberFormat format = NumberFormat.getInstance(Locale.ENGLISH);
+
         if (totalPoints < 2000)
-            reply += "%s points away from the Clue Beginner role!".formatted(2000 - totalPoints);
+            reply += "%s points away from the Clue Beginner role!".formatted(format.format(2000 - totalPoints));
         else if (totalPoints < 4000)
-            reply += "%s points away from the Clue Noob role!".formatted(4000 - totalPoints);
+            reply += "%s points away from the Clue Noob role!".formatted(format.format(4000 - totalPoints));
         else if (totalPoints < 8000)
-            reply += "%s points away from the Clue Disciple role!".formatted(8000 - totalPoints);
+            reply += "%s points away from the Clue Disciple role!".formatted(format.format(8000 - totalPoints));
         else if (totalPoints < 16000)
-            reply += "%s points away from the Clue Pro role!".formatted(16000 - totalPoints);
+            reply += "%s points away from the Clue Pro role!".formatted(format.format(16000 - totalPoints));
         else if (totalPoints < 32000)
-            reply += "%s points away from the Clue Master role!".formatted(32000 - totalPoints);
+            reply += "%s points away from the Clue Master role!".formatted(format.format(32000 - totalPoints));
         else if (totalPoints < 64000)
-            reply += "%s points away from the Clue Grandmaster role!".formatted(64000 - totalPoints);
+            reply += "%s points away from the Clue Grandmaster role!".formatted(format.format(64000 - totalPoints));
         else if (totalPoints < 128000)
-            reply += "%s points away from the Legendary Clue Chaser role!".formatted(128000 - totalPoints);
+            reply += "%s points away from the Legendary Clue Chaser role!".formatted(format.format(128000 - totalPoints));
         else if (totalPoints < 256000)
-            reply += "%s points away from the God of Clues role!".formatted(256000 - totalPoints);
+            reply += "%s points away from the God of Clues role!".formatted(format.format(256000 - totalPoints));
         else if (totalPoints < 512000)
-            reply += "%s points away from the Elder Clue God role!".formatted(512000 - totalPoints);
+            reply += "%s points away from the Elder Clue God role!".formatted(format.format(512000 - totalPoints));
         else if (totalPoints < 1024000)
-            reply += "%s points away from the Apotheosis of Charos role!".formatted(1024000 - totalPoints);
+            reply += "%s points away from the Apotheosis of Charos role!".formatted(format.format(1024000 - totalPoints));
         else
             reply = "You have earned the highest possible role. Please, go outside.";
 
@@ -117,6 +123,10 @@ public class CluesCommand extends Command {
     }
 
     private void updateDiscordRoles(Guild guild, User user) {
+        //Only update roles in Clue Chasers discord
+        if (guild.getIdLong() != Long.parseLong("332595657363685377"))
+            return;
+
         boolean frontpager = (user.getMasterRank() <= 25 && user.getMasterRank() > 0)|| (user.getEliteRank() <= 25 && user.getEliteRank() > 0)
                 || (user.getHardRank() <= 25 && user.getHardRank() > 0)|| (user.getMedRank() <= 25 && user.getMedRank() > 0)
                 || (user.getEasyRank() <= 25 && user.getEasyRank() > 0);

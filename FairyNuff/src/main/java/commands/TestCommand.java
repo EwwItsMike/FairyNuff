@@ -7,19 +7,15 @@ public class TestCommand extends Command {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        event.reply("ok").queue();
+        event.deferReply().queue();
 
-        event.getChannel().retrieveMessageById("1128842145877467186").queue(m -> {
-//            event.getChannel().sendMessageEmbeds(m.getEmbeds().get(0)).queue();
-            event.getChannel().sendMessageEmbeds(m.getEmbeds().get(0)).queue();
-        });
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setAuthor(event.getUser().getName());
+        builder.addField("Field header", "Field content", true);
+        builder.addField("Field header", "Field content", true);
+        builder.addField("", "[Join Clue Chasers!](<https://discord.com/invite/cluechasers>)", false);
 
-//        EmbedBuilder builder = new EmbedBuilder();
-//        builder.setTitle("Stock for [insert date]");
-//        builder.addField("", "uncharted island map\n Unstable air rune \n pulse cores \n d&d token", false);
-//        builder.addField("", "Tomorrow: some other items lmao", false);
-//
-//        event.getChannel().sendMessageEmbeds(builder.build()).queue();
+        event.getHook().sendMessageEmbeds(builder.build()).queue();
 
     }
 }

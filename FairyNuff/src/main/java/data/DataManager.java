@@ -10,12 +10,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class DataManager implements Serializable {
-    private Long serverID;
-
     private HashMap<Long, User> users;
 
-    public DataManager(Long serverID){
-        this.serverID = serverID;
+    public DataManager(){
         users = new HashMap<Long, User>();
     }
 
@@ -91,9 +88,5 @@ public class DataManager implements Serializable {
         }
 
         return user;
-    }
-
-    public Long getServerID() {
-        return serverID;
     }
 }

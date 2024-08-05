@@ -19,7 +19,7 @@ public class TradingCommand extends Command {
 
         builder.addField("For all your trading needs:",
                 "Please refer to the official RuneScape Discord server. You can find their marketplace here:\n" +
-                        "https://discord.com/channels/303835144073248770/1093228904807923792", false);
+                        "https://discord.com/channels/303835144073248770/1240277796937535632", false);
 
         event.getHook().sendMessageEmbeds(builder.build()).queue();
     }

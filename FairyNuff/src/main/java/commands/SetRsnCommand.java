@@ -34,7 +34,7 @@ public class SetRsnCommand extends Command {
             dataManager.updateUser(user.getIdLong(), rsn);
             event.reply("I have updated your username!").queue();
         } catch (RsnAlreadyOccupiedException e) {
-            event.reply("This RSN is already registered! If this is incorrect, please contact Mike.").queue();
+            event.reply("This RSN is already registered! If this is incorrect, please create a https://discord.com/channels/332595657363685377/1074856081160929290 ticket.").queue();
         }
     }
 }

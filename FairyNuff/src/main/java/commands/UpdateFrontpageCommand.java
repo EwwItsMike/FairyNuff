@@ -128,9 +128,9 @@ public class UpdateFrontpageCommand extends Command {
     }
 
     private Boolean isFrontpager(User user){
-        return (user.getMasterRank() <= 25 && user.getMasterRank() > 0)|| (user.getEliteRank() <= 25 && user.getEliteRank() > 0)
-                || (user.getHardRank() <= 25 && user.getHardRank() > 0)|| (user.getMedRank() <= 25 && user.getMedRank() > 0)
-                || (user.getEasyRank() <= 25 && user.getEasyRank() > 0);
+        return (user.getMasterRank() <= 50 && user.getMasterRank() > 0)|| (user.getEliteRank() <= 50 && user.getEliteRank() > 0)
+                || (user.getHardRank() <= 50 && user.getHardRank() > 0)|| (user.getMedRank() <= 50 && user.getMedRank() > 0)
+                || (user.getEasyRank() <= 50 && user.getEasyRank() > 0);
     }
 
 

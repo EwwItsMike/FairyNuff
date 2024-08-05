@@ -75,7 +75,7 @@ public class CluesCommand extends Command {
             ), true);
             eb.addField("Total clue points: %s".formatted(format.format(getTotalCluePoints(user))), "%s\n<:transparent:1047157438526271488>".formatted(getNextRankAndPointsUntil(user)), false);
 
-            eb.addField("", "[Join the Clue Summer Spectacle on June 29!](<https://discordapp.com/channels/332595657363685377/333656528777379840/1195842848885583902>)", false);
+            eb.addField("", "[Join the Clue Chasers Discord server!](<https://discord.gg/cluechasers>)", false);
 
             event.getHook().sendMessageEmbeds(eb.build()).queue();
         } catch (UserNotFoundException e) {
@@ -127,9 +127,9 @@ public class CluesCommand extends Command {
         if (guild.getIdLong() != Long.parseLong("332595657363685377"))
             return;
 
-        boolean frontpager = (user.getMasterRank() <= 25 && user.getMasterRank() > 0)|| (user.getEliteRank() <= 25 && user.getEliteRank() > 0)
-                || (user.getHardRank() <= 25 && user.getHardRank() > 0)|| (user.getMedRank() <= 25 && user.getMedRank() > 0)
-                || (user.getEasyRank() <= 25 && user.getEasyRank() > 0);
+        boolean frontpager = (user.getMasterRank() <= 50 && user.getMasterRank() > 0)|| (user.getEliteRank() <= 50 && user.getEliteRank() > 0)
+                || (user.getHardRank() <= 50 && user.getHardRank() > 0)|| (user.getMedRank() <= 50 && user.getMedRank() > 0)
+                || (user.getEasyRank() <= 50 && user.getEasyRank() > 0);
         int totalPoints = getTotalCluePoints(user);
 
         UserSnowflake snowflake = UserSnowflake.fromId(user.getDiscordID());

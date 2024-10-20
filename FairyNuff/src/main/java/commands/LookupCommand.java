@@ -50,7 +50,7 @@ public class LookupCommand extends Command {
                             rsn, getNextRankAndPointsUntil(totalPoints)
             ), false);
 
-            eb.addField("", "[Join the Clue Chasers Discord server!](<https://discord.gg/cluechasers>)", false);
+            eb.addField("", "[Join the Clue Chasers Winter Mass - For more](<https://discord.gg/cluechasers>) <#1288820296593313802>", false);
 
             event.getHook().sendMessageEmbeds(eb.build()).queue();
 

@@ -15,7 +15,7 @@ public class TradingCommand extends Command {
         builder.setColor(0x0000e0);
 
         builder.setTitle("Please do not post any trade offers in this server.");
-        builder.setDescription("We recommend you read our trading rule (#3) in\n <#440211606539075584> \n<:transparent:1047157438526271488>");
+        builder.setDescription("We recommend you read our trading rule (#3) in\n <#1283170720599248938> \n<:transparent:1047157438526271488>");
 
         builder.addField("For all your trading needs:",
                 "Please refer to the official RuneScape Discord server. You can find their marketplace here:\n" +

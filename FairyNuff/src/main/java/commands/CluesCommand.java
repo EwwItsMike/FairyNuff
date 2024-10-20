@@ -75,7 +75,7 @@ public class CluesCommand extends Command {
             ), true);
             eb.addField("Total clue points: %s".formatted(format.format(getTotalCluePoints(user))), "%s\n<:transparent:1047157438526271488>".formatted(getNextRankAndPointsUntil(user)), false);
 
-            eb.addField("", "[Join the Clue Chasers Discord server!](<https://discord.gg/cluechasers>)", false);
+            eb.addField("", "[Join the Clue Chasers Winter Mass - For more](<https://discord.gg/cluechasers>) <#1288820296593313802>", false);
 
             event.getHook().sendMessageEmbeds(eb.build()).queue();
         } catch (UserNotFoundException e) {

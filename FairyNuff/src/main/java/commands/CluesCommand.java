@@ -75,7 +75,7 @@ public class CluesCommand extends Command {
             ), true);
             eb.addField("Total clue points: %s".formatted(format.format(getTotalCluePoints(user))), "%s\n<:transparent:1047157438526271488>".formatted(getNextRankAndPointsUntil(user)), false);
 
-            eb.addField("", "[Join the Clue Chasers Winter Mass - For more](<https://discord.gg/cluechasers>) <#1288820296593313802>", false);
+            eb.addField("", "[Join our upcoming community mass opening, this winter on December 20th!](<https://discord.com/events/332595657363685377/1409554557574582272>)", false);
 
             event.getHook().sendMessageEmbeds(eb.build()).queue();
         } catch (UserNotFoundException e) {
@@ -229,7 +229,7 @@ public class CluesCommand extends Command {
 
         // Split the last 5 entries in htmlKVP into separate strings
         for (int i = 0; i < 5; i++) {
-            String[] rankAndValue = htmlKVP[(htmlKVP.length - 1) - i].split(",");
+            String[] rankAndValue = htmlKVP[(htmlKVP.length - 2) - i].split(",");
 
             // And add them to the ranks hashmap as values
             int rank = Integer.parseInt(rankAndValue[0]);
